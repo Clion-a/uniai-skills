@@ -19,9 +19,13 @@ code, a quick model chat, or their credit balance — and `uniai` is installed.
 
 - `uniai --version` must succeed. If it is missing, install with `npm i -g @uniai/cli` (npm only;
   do not use pnpm/yarn for this), or have the user read the package's `install.md`.
-- Auth: a UniAI Personal Access Token (PAT, starts with `uap_`) must be configured. Check with
-  `uniai auth status` (it prints a masked token). If not configured, ask the user to run
-  `uniai auth login --token uap_...` in their terminal — never write the token into your reply text.
+- Auth: needs a UniAI Personal Access Token (PAT, starts with `uap_`). Probe with `uniai auth status`
+  (prints a masked token). If it is not configured, handle login **right here in the conversation** —
+  do not send the user off to a separate terminal: (1) tell them to create a PAT at
+  <https://www.uniai.ai> → Settings → Personal Access Tokens; (2) ask them to paste it into the chat;
+  (3) run `uniai auth login --token <pasted_pat>` yourself via your shell/terminal tool. Security:
+  never echo the token back in your prose replies — confirm success only with the masked value from
+  `uniai auth status`.
 - Before a paid generation (image/video/speech), you may check budget first with
   `uniai usage --json` and read `credits.total`.
 
