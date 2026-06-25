@@ -110,4 +110,3 @@ console.log("wrote output.pptx");
 - **No external rendering.** This skill never launches LibreOffice/PowerPoint or any GUI app; the deck is verified by construction (see above) and previewed in UniAI's built-in panel. Don't shell out to a renderer.
 - Relies only on the bundled `pptxgenjs` lib (`UNIAI_NODE_LIBS`); no `soffice`/`pdftoppm` dependency.
 
-<!-- OTA_E2E_REALGH_V2 -->
