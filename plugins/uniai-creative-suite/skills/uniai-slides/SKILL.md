@@ -111,4 +111,3 @@ console.log("wrote output.pptx");
 - Relies only on the bundled `pptxgenjs` lib (`UNIAI_NODE_LIBS`); no `soffice`/`pdftoppm` dependency.
 
 
-<!-- OTA_E2E_REALGH_V2 -->
