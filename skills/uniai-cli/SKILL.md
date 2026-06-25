@@ -39,7 +39,8 @@ uniai chat "<message>" --json
 uniai image generate "<prompt>" [--model <id>] [--aspect-ratio 1:1|16:9|9:16|4:3|3:4|21:9|3:1] [--count <n>] [--quality low|medium|high] [--reference <path|url>[,...]] [--download out.png] --json
 uniai image models --json     # list available image models + their supported params
 uniai image edit --image <url> [--output-format png|jpg|webp] [--download out.png] --json
-uniai video generate "<prompt>" [--aspect-ratio 16:9|9:16|1:1] [--duration 5|10] [--download out.mp4] --json
+uniai video generate "<prompt>" [--model <id>] [--aspect-ratio 16:9|9:16|1:1] [--duration <2-15>] [--first-frame <img>] [--reference <img,..>] [--source-video <vid>] [--download out.mp4] --json
+uniai video models --json     # list available video models + their modes/durations/resolutions
 uniai speech synthesize "<text>" [--voice <id>] [--format mp3|wav] [--download out.mp3] --json
 uniai speech recognize <audio: path|url> [--language auto|zh|en|ja|ko] --json
 uniai ocr <image: path|url> --json
@@ -64,6 +65,14 @@ about the model, aspect ratio, count, or quality, ask them (or run `uniai image 
 options), then pass the matching flags (`--model`, `--aspect-ratio`, `--count`, `--quality`). If they
 don't care, just generate; sensible defaults are used. (No need to re-implement a selection flow — the
 recommendation/confirmation logic lives in the shared core.)
+
+**Video from an image / clip (animate, edit, extend):** for `uniai video generate`, the mode is
+auto-derived from the media you attach — `--first-frame <img>` animates a photo (image-to-video),
+`--first-frame` + `--last-frame` interpolates first→last, `--reference <img,..>` does reference-to-video,
+`--source-video <vid>` edits/restyles a clip, `--continuation-video <vid>` extends one; none = text-to-video.
+Pass the user's uploaded file's **local path** (it is uploaded for you). A prompt is always required
+(describe the motion/scene). Run `uniai video models` to see which models support which modes. The same
+`--model` / `--aspect-ratio` / parameter logic as image applies.
 
 ## Output contract
 
