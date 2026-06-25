@@ -36,7 +36,8 @@ code, a quick model chat, or their credit balance — and `uniai` is installed.
 
 ```bash
 uniai chat "<message>" --json
-uniai image generate "<prompt>" [--size 1024x1024|1280x720|720x1280] [--reference <path|url>[,...]] [--download out.png] --json
+uniai image generate "<prompt>" [--model <id>] [--aspect-ratio 1:1|16:9|9:16|4:3|3:4|21:9|3:1] [--count <n>] [--quality low|medium|high] [--reference <path|url>[,...]] [--download out.png] --json
+uniai image models --json     # list available image models + their supported params
 uniai image edit --image <url> [--output-format png|jpg|webp] [--download out.png] --json
 uniai video generate "<prompt>" [--aspect-ratio 16:9|9:16|1:1] [--duration 5|10] [--download out.mp4] --json
 uniai speech synthesize "<text>" [--voice <id>] [--format mp3|wav] [--download out.mp3] --json
@@ -56,6 +57,13 @@ pose", "make a variation of this" — use `uniai image generate "<prompt>" --ref
 the photo's **local file path** (the tool uploads it for you; up to 5, comma-separated). Do NOT use
 `uniai image edit` for that — `edit` only sharpens/feathers edges or processes the background of a URL,
 it cannot follow a prompt or change content.
+
+**Choosing model / parameters:** the CLI does not pop confirmation dialogs — it passes only the flags
+you give and uses the platform-recommended model + parameters for everything else. So if the user cares
+about the model, aspect ratio, count, or quality, ask them (or run `uniai image models` to show the
+options), then pass the matching flags (`--model`, `--aspect-ratio`, `--count`, `--quality`). If they
+don't care, just generate; sensible defaults are used. (No need to re-implement a selection flow — the
+recommendation/confirmation logic lives in the shared core.)
 
 ## Output contract
 
