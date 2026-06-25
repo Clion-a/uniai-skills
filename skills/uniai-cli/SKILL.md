@@ -22,7 +22,7 @@ code, a quick model chat, or their credit balance — and `uniai` is installed.
 - Auth: needs a UniAI Personal Access Token (PAT, starts with `uap_`). Probe with `uniai auth status`
   (prints a masked token). If it is not configured, handle login **right here in the conversation** —
   do not send the user off to a separate terminal: (1) tell them to create a PAT at
-  <https://www.uniai.ai> → Settings → Personal Access Tokens; (2) ask them to paste it into the chat;
+  <https://www.uniai.ai> → Personal Center → Security tab → Personal Access Tokens → Generate; (2) ask them to paste it into the chat;
   (3) run `uniai auth login --token <pasted_pat>` yourself via your shell/terminal tool. Security:
   never echo the token back in your prose replies — confirm success only with the masked value from
   `uniai auth status`.
