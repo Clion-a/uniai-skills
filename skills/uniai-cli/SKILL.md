@@ -36,7 +36,7 @@ code, a quick model chat, or their credit balance — and `uniai` is installed.
 
 ```bash
 uniai chat "<message>" --json
-uniai image generate "<prompt>" [--size 1024x1024|1280x720|720x1280] [--download out.png] --json
+uniai image generate "<prompt>" [--size 1024x1024|1280x720|720x1280] [--reference <path|url>[,...]] [--download out.png] --json
 uniai image edit --image <url> [--output-format png|jpg|webp] [--download out.png] --json
 uniai video generate "<prompt>" [--aspect-ratio 16:9|9:16|1:1] [--duration 5|10] [--download out.mp4] --json
 uniai speech synthesize "<text>" [--voice <id>] [--format mp3|wav] [--download out.mp3] --json
@@ -49,6 +49,13 @@ uniai usage --json            # credit balance (alias: uniai quota)
 
 For media commands, pass `--download <file>` to save the result locally; report the saved path to
 the user. Run `uniai <command> --help` for the full options of any single command.
+
+**Image-to-image (from an uploaded/existing photo):** when the user wants a new image based on a photo
+they gave you — e.g. "full-body shot of this person", "change the clothing", "same character, new
+pose", "make a variation of this" — use `uniai image generate "<prompt>" --reference <path>` and pass
+the photo's **local file path** (the tool uploads it for you; up to 5, comma-separated). Do NOT use
+`uniai image edit` for that — `edit` only sharpens/feathers edges or processes the background of a URL,
+it cannot follow a prompt or change content.
 
 ## Output contract
 
